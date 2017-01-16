@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>fm_example</value>
+      <value>FM_FDB_A</value>
     </param>
     <param>
       <key>max_nouts</key>

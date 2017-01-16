@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Fm Example
-# Generated: Thu Jan 12 16:00:52 2017
+# Title: Fm Fdb A
+# Generated: Mon Jan 16 10:55:00 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -35,12 +35,12 @@ import time
 from gnuradio import qtgui
 
 
-class fm_example(gr.top_block, Qt.QWidget):
+class FM_FDB_A(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Fm Example")
+        gr.top_block.__init__(self, "Fm Fdb A")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Fm Example")
+        self.setWindowTitle("Fm Fdb A")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -58,7 +58,7 @@ class fm_example(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "fm_example")
+        self.settings = Qt.QSettings("GNU Radio", "FM_FDB_A")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
         ##################################################
@@ -233,7 +233,7 @@ class fm_example(gr.top_block, Qt.QWidget):
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_freq_sink_x_0, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "fm_example")
+        self.settings = Qt.QSettings("GNU Radio", "FM_FDB_A")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -273,7 +273,7 @@ class fm_example(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0.set_samp_rate(self.a_rate)
 
 
-def main(top_block_cls=fm_example, options=None):
+def main(top_block_cls=FM_FDB_A, options=None):
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):

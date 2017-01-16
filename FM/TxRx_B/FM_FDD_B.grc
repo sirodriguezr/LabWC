@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>fm_example</value>
+      <value>FM_FDB_B</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -538,7 +538,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -722,7 +722,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1991,7 +1991,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
