@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.9'?>
+<?grc format='1' created='3.7.11'?>
 <flow_graph>
   <timestamp>Mon Mar 14 12:37:31 2016</timestamp>
   <block>
@@ -254,7 +254,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(352, 75)</value>
+      <value>(368, 76)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -435,7 +435,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(520, 107)</value>
+      <value>(560, 108)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1318,6 +1318,10 @@
     <param>
       <key>hide_cmd_port</key>
       <value>False</value>
+    </param>
+    <param>
+      <key>hide_lo_controls</key>
+      <value>True</value>
     </param>
     <param>
       <key>stream_args</key>
