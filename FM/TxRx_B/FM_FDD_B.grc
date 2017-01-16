@@ -308,7 +308,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -429,7 +429,7 @@ drop the samples (might cause audio glitches).</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -573,7 +573,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -781,7 +781,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
@@ -805,7 +805,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>samp_rate</key>
-      <value>96000</value>
+      <value>44100</value>
     </param>
   </block>
   <block>
@@ -951,7 +951,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>type</key>
@@ -1038,7 +1038,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -1337,7 +1337,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -1628,7 +1628,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2342,7 +2342,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>fbw</key>
@@ -4443,7 +4443,7 @@ called the 'two clock' problem.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
