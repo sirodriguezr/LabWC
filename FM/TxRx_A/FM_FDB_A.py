@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Fm Fdb A
-# Generated: Mon Jan 16 10:55:00 2017
+# Generated: Mon Jan 16 11:19:08 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -64,7 +64,7 @@ class FM_FDB_A(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.volume = volume = 1
+        self.volume = volume = 0.5
         self.rx_sr = rx_sr = 1e6
         self.qa_rate = qa_rate = 200e3
         self.cf = cf = 2.45e9
@@ -73,7 +73,7 @@ class FM_FDB_A(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._volume_range = Range(0, 1, 0.1, 1, 200)
+        self._volume_range = Range(0, 1, 0.1, 0.5, 200)
         self._volume_win = RangeWidget(self._volume_range, self.set_volume, "volume", "counter_slider", float)
         self.top_layout.addWidget(self._volume_win)
         self.controls = Qt.QTabWidget()
@@ -210,7 +210,7 @@ class FM_FDB_A(gr.top_block, Qt.QWidget):
         self._cf_range = Range(2e9, 3e9, 0.1e9, 2.45e9, 200)
         self._cf_win = RangeWidget(self._cf_range, self.set_cf, "cf", "counter_slider", float)
         self.top_layout.addWidget(self._cf_win)
-        self.blocks_wavfile_sink_0 = blocks.wavfile_sink('fm_record', 1, 96000, 8)
+        self.blocks_wavfile_sink_0 = blocks.wavfile_sink('fm_record', 1, 44100, 8)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((volume, ))
         self.audio_sink_0 = audio.sink(44100, '', False)
         self.analog_nbfm_rx_0 = analog.nbfm_rx(
