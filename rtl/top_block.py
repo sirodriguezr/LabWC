@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Thu Oct 13 12:29:41 2016
+# Generated: Thu Jan 26 19:47:16 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -32,6 +32,7 @@ import osmosdr
 import sip
 import sys
 import time
+from gnuradio import qtgui
 
 
 class top_block(gr.top_block, Qt.QWidget):
@@ -40,6 +41,7 @@ class top_block(gr.top_block, Qt.QWidget):
         gr.top_block.__init__(self, "Top Block")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Top Block")
+        qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
         except:
@@ -66,39 +68,23 @@ class top_block(gr.top_block, Qt.QWidget):
         self.vol = vol = 1
         self.samp_rate = samp_rate = 1e6
         self.qa_rate = qa_rate = 200e3
-        self.fm_freq_0 = fm_freq_0 = 88.9e6
-        self.fm_freq = fm_freq = 88.9e6
+        self.fm_freq_0 = fm_freq_0 = 103.9e6
+        self.fm_freq = fm_freq = 103.9e6
         self.a_rate = a_rate = 44.1e3
 
         ##################################################
         # Blocks
         ##################################################
-        self._vol_0_range = Range(0, 100, 0.1, 1, 200)
-        self._vol_0_win = RangeWidget(self._vol_0_range, self.set_vol_0, "vol_0", "counter_slider", float)
-        self.top_layout.addWidget(self._vol_0_win)
         self._vol_range = Range(0, 100, 0.1, 1, 200)
         self._vol_win = RangeWidget(self._vol_range, self.set_vol, "vol", "counter_slider", float)
         self.top_layout.addWidget(self._vol_win)
-        self._fm_freq_0_range = Range(88.3e6, 107.9e6, 0.1e6, 88.9e6, 200)
-        self._fm_freq_0_win = RangeWidget(self._fm_freq_0_range, self.set_fm_freq_0, "fm_freq_0", "counter_slider", float)
-        self.top_layout.addWidget(self._fm_freq_0_win)
-        self._fm_freq_range = Range(88.3e6, 107.9e6, 0.1e6, 88.9e6, 200)
+        self._fm_freq_range = Range(88.3e6, 107.9e6, 0.1e6, 103.9e6, 200)
         self._fm_freq_win = RangeWidget(self._fm_freq_range, self.set_fm_freq, "fm_freq", "counter_slider", float)
         self.top_layout.addWidget(self._fm_freq_win)
-        self.rtlsdr_source_0_0 = osmosdr.source( args="numchan=" + str(1) + " " + "rtl=0" )
-        self.rtlsdr_source_0_0.set_sample_rate(samp_rate)
-        self.rtlsdr_source_0_0.set_center_freq(fm_freq_0, 0)
-        self.rtlsdr_source_0_0.set_freq_corr(0, 0)
-        self.rtlsdr_source_0_0.set_dc_offset_mode(0, 0)
-        self.rtlsdr_source_0_0.set_iq_balance_mode(0, 0)
-        self.rtlsdr_source_0_0.set_gain_mode(False, 0)
-        self.rtlsdr_source_0_0.set_gain(10, 0)
-        self.rtlsdr_source_0_0.set_if_gain(20, 0)
-        self.rtlsdr_source_0_0.set_bb_gain(20, 0)
-        self.rtlsdr_source_0_0.set_antenna("", 0)
-        self.rtlsdr_source_0_0.set_bandwidth(0, 0)
-          
-        self.rtlsdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + "rtl=1" )
+        self._vol_0_range = Range(0, 100, 0.1, 1, 200)
+        self._vol_0_win = RangeWidget(self._vol_0_range, self.set_vol_0, "vol_0", "counter_slider", float)
+        self.top_layout.addWidget(self._vol_0_win)
+        self.rtlsdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + 'rtl=0' )
         self.rtlsdr_source_0.set_sample_rate(samp_rate)
         self.rtlsdr_source_0.set_center_freq(fm_freq, 0)
         self.rtlsdr_source_0.set_freq_corr(0, 0)
@@ -108,16 +94,10 @@ class top_block(gr.top_block, Qt.QWidget):
         self.rtlsdr_source_0.set_gain(10, 0)
         self.rtlsdr_source_0.set_if_gain(20, 0)
         self.rtlsdr_source_0.set_bb_gain(20, 0)
-        self.rtlsdr_source_0.set_antenna("", 0)
+        self.rtlsdr_source_0.set_antenna('', 0)
         self.rtlsdr_source_0.set_bandwidth(0, 0)
-          
+
         self.rational_resampler_xxx_0_0 = filter.rational_resampler_fff(
-                interpolation=int(a_rate/1e3*1.04),
-                decimation=int(qa_rate/1e3),
-                taps=None,
-                fractional_bw=None,
-        )
-        self.rational_resampler_xxx_0 = filter.rational_resampler_fff(
                 interpolation=int(a_rate/1e3*1.04),
                 decimation=int(qa_rate/1e3),
                 taps=None,
@@ -129,31 +109,33 @@ class top_block(gr.top_block, Qt.QWidget):
         	0, #fc
         	samp_rate, #bw
         	"", #name
-        	2 #number of inputs
+        	1 #number of inputs
         )
         self.qtgui_freq_sink_x_0_0.set_update_time(0.10)
         self.qtgui_freq_sink_x_0_0.set_y_axis(-140, 10)
+        self.qtgui_freq_sink_x_0_0.set_y_label('Relative Gain', 'dB')
         self.qtgui_freq_sink_x_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
         self.qtgui_freq_sink_x_0_0.enable_autoscale(False)
         self.qtgui_freq_sink_x_0_0.enable_grid(False)
         self.qtgui_freq_sink_x_0_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_0.enable_axis_labels(True)
         self.qtgui_freq_sink_x_0_0.enable_control_panel(False)
-        
+
         if not True:
           self.qtgui_freq_sink_x_0_0.disable_legend()
-        
+
         if "complex" == "float" or "complex" == "msg_float":
           self.qtgui_freq_sink_x_0_0.set_plot_pos_half(not True)
-        
-        labels = ["RTL0", "", "", "", "",
-                  "", "", "", "", ""]
+
+        labels = ['RTL0', '', '', '', '',
+                  '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
         colors = ["blue", "red", "green", "black", "cyan",
                   "magenta", "yellow", "dark red", "dark green", "dark blue"]
         alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
                   1.0, 1.0, 1.0, 1.0, 1.0]
-        for i in xrange(2):
+        for i in xrange(1):
             if len(labels[i]) == 0:
                 self.qtgui_freq_sink_x_0_0.set_line_label(i, "Data {0}".format(i))
             else:
@@ -161,24 +143,17 @@ class top_block(gr.top_block, Qt.QWidget):
             self.qtgui_freq_sink_x_0_0.set_line_width(i, widths[i])
             self.qtgui_freq_sink_x_0_0.set_line_color(i, colors[i])
             self.qtgui_freq_sink_x_0_0.set_line_alpha(i, alphas[i])
-        
+
         self._qtgui_freq_sink_x_0_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_0.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_0_0_win)
         self.low_pass_filter_0_0 = filter.fir_filter_ccf(5, firdes.low_pass(
         	1, samp_rate, 200e3, 1e3, firdes.WIN_HAMMING, 6.76))
-        self.low_pass_filter_0 = filter.fir_filter_ccf(5, firdes.low_pass(
-        	1, samp_rate, 200e3, 1e3, firdes.WIN_HAMMING, 6.76))
+        self._fm_freq_0_range = Range(88.3e6, 107.9e6, 0.1e6, 103.9e6, 200)
+        self._fm_freq_0_win = RangeWidget(self._fm_freq_0_range, self.set_fm_freq_0, "fm_freq_0", "counter_slider", float)
+        self.top_layout.addWidget(self._fm_freq_0_win)
         self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_vff((vol, ))
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((vol_0, ))
-        self.blocks_add_xx_0 = blocks.add_vff(1)
-        self.audio_sink_0 = audio.sink(44100, "", True)
+        self.audio_sink_0 = audio.sink(44100, '', True)
         self.analog_nbfm_rx_0_0_0 = analog.nbfm_rx(
-        	audio_rate=int(qa_rate),
-        	quad_rate=int(qa_rate),
-        	tau=75e-6,
-        	max_dev=100e3,
-          )
-        self.analog_nbfm_rx_0_0 = analog.nbfm_rx(
         	audio_rate=int(qa_rate),
         	quad_rate=int(qa_rate),
         	tau=75e-6,
@@ -188,32 +163,23 @@ class top_block(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.analog_nbfm_rx_0_0, 0), (self.rational_resampler_xxx_0, 0))    
-        self.connect((self.analog_nbfm_rx_0_0_0, 0), (self.rational_resampler_xxx_0_0, 0))    
-        self.connect((self.blocks_add_xx_0, 0), (self.audio_sink_0, 0))    
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_add_xx_0, 1))    
-        self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.blocks_add_xx_0, 0))    
-        self.connect((self.low_pass_filter_0, 0), (self.analog_nbfm_rx_0_0, 0))    
-        self.connect((self.low_pass_filter_0_0, 0), (self.analog_nbfm_rx_0_0_0, 0))    
-        self.connect((self.rational_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_0, 0))    
-        self.connect((self.rational_resampler_xxx_0_0, 0), (self.blocks_multiply_const_vxx_0_0, 0))    
-        self.connect((self.rtlsdr_source_0, 0), (self.low_pass_filter_0_0, 0))    
-        self.connect((self.rtlsdr_source_0, 0), (self.qtgui_freq_sink_x_0_0, 1))    
-        self.connect((self.rtlsdr_source_0_0, 0), (self.low_pass_filter_0, 0))    
-        self.connect((self.rtlsdr_source_0_0, 0), (self.qtgui_freq_sink_x_0_0, 0))    
+        self.connect((self.analog_nbfm_rx_0_0_0, 0), (self.rational_resampler_xxx_0_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.audio_sink_0, 0))
+        self.connect((self.low_pass_filter_0_0, 0), (self.analog_nbfm_rx_0_0_0, 0))
+        self.connect((self.rational_resampler_xxx_0_0, 0), (self.blocks_multiply_const_vxx_0_0, 0))
+        self.connect((self.rtlsdr_source_0, 0), (self.low_pass_filter_0_0, 0))
+        self.connect((self.rtlsdr_source_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "top_block")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
-
     def get_vol_0(self):
         return self.vol_0
 
     def set_vol_0(self, vol_0):
         self.vol_0 = vol_0
-        self.blocks_multiply_const_vxx_0.set_k((self.vol_0, ))
 
     def get_vol(self):
         return self.vol
@@ -227,11 +193,9 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.qtgui_freq_sink_x_0_0.set_frequency_range(0, self.samp_rate)
         self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
-        self.rtlsdr_source_0_0.set_sample_rate(self.samp_rate)
+        self.qtgui_freq_sink_x_0_0.set_frequency_range(0, self.samp_rate)
         self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, 200e3, 1e3, firdes.WIN_HAMMING, 6.76))
-        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 200e3, 1e3, firdes.WIN_HAMMING, 6.76))
 
     def get_qa_rate(self):
         return self.qa_rate
@@ -244,7 +208,6 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_fm_freq_0(self, fm_freq_0):
         self.fm_freq_0 = fm_freq_0
-        self.rtlsdr_source_0_0.set_center_freq(self.fm_freq_0, 0)
 
     def get_fm_freq(self):
         return self.fm_freq
