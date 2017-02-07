@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Gmsk Tx
-# Generated: Mon Aug 22 08:49:25 2016
+# Generated: Fri Jan 27 17:50:00 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -30,6 +30,7 @@ from grc_gnuradio import blks2 as grc_blks2
 from optparse import OptionParser
 import sip
 import sys
+from gnuradio import qtgui
 
 
 class GMSK_tx(gr.top_block, Qt.QWidget):
@@ -38,6 +39,7 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
         gr.top_block.__init__(self, "Gmsk Tx")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Gmsk Tx")
+        qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
         except:
@@ -77,23 +79,23 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
         self.controls_layout_0 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.controls_widget_0)
         self.controls_grid_layout_0 = Qt.QGridLayout()
         self.controls_layout_0.addLayout(self.controls_grid_layout_0)
-        self.controls.addTab(self.controls_widget_0, "Freq")
+        self.controls.addTab(self.controls_widget_0, 'Freq')
         self.controls_widget_1 = Qt.QWidget()
         self.controls_layout_1 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.controls_widget_1)
         self.controls_grid_layout_1 = Qt.QGridLayout()
         self.controls_layout_1.addLayout(self.controls_grid_layout_1)
-        self.controls.addTab(self.controls_widget_1, "Const")
+        self.controls.addTab(self.controls_widget_1, 'Const')
         self.controls_widget_2 = Qt.QWidget()
         self.controls_layout_2 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.controls_widget_2)
         self.controls_grid_layout_2 = Qt.QGridLayout()
         self.controls_layout_2.addLayout(self.controls_grid_layout_2)
-        self.controls.addTab(self.controls_widget_2, "time")
+        self.controls.addTab(self.controls_widget_2, 'time')
         self.top_layout.addWidget(self.controls)
         self._GN_range = Range(0, 1, 0.05, 0, 200)
         self._GN_win = RangeWidget(self._GN_range, self.set_GN, "GN", "counter_slider", float)
         self.top_layout.addWidget(self._GN_win)
         self._rate_range = Range(50e3, 1000e3, 100, 500e3, 200)
-        self._rate_win = RangeWidget(self._rate_range, self.set_rate, "Sample Rate", "counter_slider", float)
+        self._rate_win = RangeWidget(self._rate_range, self.set_rate, 'Sample Rate', "counter_slider", float)
         self.top_layout.addWidget(self._rate_win)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
         	1024*8, #size
@@ -103,20 +105,21 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
         )
         self.qtgui_time_sink_x_0.set_update_time(0.10)
         self.qtgui_time_sink_x_0.set_y_axis(0, 200)
-        
-        self.qtgui_time_sink_x_0.set_y_label("Amplitude", "")
-        
+
+        self.qtgui_time_sink_x_0.set_y_label('Amplitude', "")
+
         self.qtgui_time_sink_x_0.enable_tags(-1, True)
         self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
         self.qtgui_time_sink_x_0.enable_autoscale(True)
         self.qtgui_time_sink_x_0.enable_grid(True)
+        self.qtgui_time_sink_x_0.enable_axis_labels(True)
         self.qtgui_time_sink_x_0.enable_control_panel(True)
-        
+
         if not True:
           self.qtgui_time_sink_x_0.disable_legend()
-        
-        labels = ["", "", "", "", "",
-                  "", "", "", "", ""]
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
         colors = ["blue", "red", "green", "black", "cyan",
@@ -127,7 +130,7 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
                    -1, -1, -1, -1, -1]
         alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
                   1.0, 1.0, 1.0, 1.0, 1.0]
-        
+
         for i in xrange(2):
             if len(labels[i]) == 0:
                 self.qtgui_time_sink_x_0.set_line_label(i, "Data {0}".format(i))
@@ -138,7 +141,7 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_0.set_line_style(i, styles[i])
             self.qtgui_time_sink_x_0.set_line_marker(i, markers[i])
             self.qtgui_time_sink_x_0.set_line_alpha(i, alphas[i])
-        
+
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
         self.controls_grid_layout_2.addWidget(self._qtgui_time_sink_x_0_win,  0,0,1,1)
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
@@ -151,20 +154,22 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
         )
         self.qtgui_freq_sink_x_0.set_update_time(0.10)
         self.qtgui_freq_sink_x_0.set_y_axis(-140, 10)
+        self.qtgui_freq_sink_x_0.set_y_label('Relative Gain', 'dB')
         self.qtgui_freq_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
         self.qtgui_freq_sink_x_0.enable_autoscale(False)
         self.qtgui_freq_sink_x_0.enable_grid(False)
         self.qtgui_freq_sink_x_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0.enable_axis_labels(True)
         self.qtgui_freq_sink_x_0.enable_control_panel(False)
-        
+
         if not True:
           self.qtgui_freq_sink_x_0.disable_legend()
-        
+
         if "complex" == "float" or "complex" == "msg_float":
           self.qtgui_freq_sink_x_0.set_plot_pos_half(not True)
-        
-        labels = ["QPSK mod", "", "", "", "",
-                  "", "", "", "", ""]
+
+        labels = ['QPSK mod', '', '', '', '',
+                  '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
         colors = ["blue", "red", "green", "black", "cyan",
@@ -179,7 +184,7 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
             self.qtgui_freq_sink_x_0.set_line_width(i, widths[i])
             self.qtgui_freq_sink_x_0.set_line_color(i, colors[i])
             self.qtgui_freq_sink_x_0.set_line_alpha(i, alphas[i])
-        
+
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
         self.controls_grid_layout_0.addWidget(self._qtgui_freq_sink_x_0_win,  0,0,1,1)
         self.qtgui_const_sink_x_0 = qtgui.const_sink_c(
@@ -193,12 +198,13 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
         self.qtgui_const_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, "")
         self.qtgui_const_sink_x_0.enable_autoscale(False)
         self.qtgui_const_sink_x_0.enable_grid(False)
-        
+        self.qtgui_const_sink_x_0.enable_axis_labels(True)
+
         if not True:
           self.qtgui_const_sink_x_0.disable_legend()
-        
-        labels = ["QPSK_mod", "", "", "", "",
-                  "", "", "", "", ""]
+
+        labels = ['QPSK_mod', '', '', '', '',
+                  '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
         colors = ["blue", "red", "red", "red", "red",
@@ -219,7 +225,7 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
             self.qtgui_const_sink_x_0.set_line_style(i, styles[i])
             self.qtgui_const_sink_x_0.set_line_marker(i, markers[i])
             self.qtgui_const_sink_x_0.set_line_alpha(i, alphas[i])
-        
+
         self._qtgui_const_sink_x_0_win = sip.wrapinstance(self.qtgui_const_sink_x_0.pyqwidget(), Qt.QWidget)
         self.controls_grid_layout_1.addWidget(self._qtgui_const_sink_x_0_win,  0,0,1,1)
         self._gain_RF_range = Range(0, 31.5, 0.5, 0, 200)
@@ -233,10 +239,10 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
         	log=False,
         )
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((1, ))
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, "/home/unal/Desktop/USRP--UNAL/LabWC/GMSK/plaindata.dat", False)
-        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_char*1, "/home/unal/Desktop/USRP--UNAL/LabWC/GMSK/vecdata", False)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/unal/Desktop/USRP--UNAL/LabWC/GMSK/plaindata.dat', True)
+        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/unal/Desktop/USRP--UNAL/LabWC/GMSK/vecdata', False)
         self.blocks_file_sink_0_0.set_unbuffered(False)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, "/home/unal/Desktop/USRP--UNAL/LabWC/GMSK/crc32test", False)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/unal/Desktop/USRP--UNAL/LabWC/GMSK/crc32test', False)
         self.blocks_file_sink_0.set_unbuffered(False)
         self.blocks_char_to_float_0_0 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)
@@ -255,26 +261,25 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.analog_noise_source_x_0, 0), (self.blocks_add_xx_0, 0))    
-        self.connect((self.blks2_packet_encoder_0, 0), (self.blocks_char_to_float_0, 0))    
-        self.connect((self.blks2_packet_encoder_0, 0), (self.blocks_file_sink_0, 0))    
-        self.connect((self.blks2_packet_encoder_0, 0), (self.digital_gmsk_mod_0, 0))    
-        self.connect((self.blocks_add_xx_0, 0), (self.blocks_multiply_const_vxx_0, 0))    
-        self.connect((self.blocks_add_xx_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))    
-        self.connect((self.blocks_char_to_float_0, 0), (self.qtgui_time_sink_x_0, 0))    
-        self.connect((self.blocks_char_to_float_0_0, 0), (self.qtgui_time_sink_x_0, 1))    
-        self.connect((self.blocks_file_source_0, 0), (self.blks2_packet_encoder_0, 0))    
-        self.connect((self.blocks_file_source_0, 0), (self.blocks_char_to_float_0_0, 0))    
-        self.connect((self.blocks_file_source_0, 0), (self.blocks_file_sink_0_0, 0))    
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.qtgui_freq_sink_x_0, 0))    
-        self.connect((self.digital_gmsk_mod_0, 0), (self.blocks_add_xx_0, 1))    
-        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.qtgui_const_sink_x_0, 0))    
+        self.connect((self.analog_noise_source_x_0, 0), (self.blocks_add_xx_0, 0))
+        self.connect((self.blks2_packet_encoder_0, 0), (self.blocks_char_to_float_0, 0))
+        self.connect((self.blks2_packet_encoder_0, 0), (self.blocks_file_sink_0, 0))
+        self.connect((self.blks2_packet_encoder_0, 0), (self.digital_gmsk_mod_0, 0))
+        self.connect((self.blocks_add_xx_0, 0), (self.blocks_multiply_const_vxx_0, 0))
+        self.connect((self.blocks_add_xx_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.blocks_char_to_float_0, 0), (self.qtgui_time_sink_x_0, 0))
+        self.connect((self.blocks_char_to_float_0_0, 0), (self.qtgui_time_sink_x_0, 1))
+        self.connect((self.blocks_file_source_0, 0), (self.blks2_packet_encoder_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.blocks_char_to_float_0_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.blocks_file_sink_0_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.digital_gmsk_mod_0, 0), (self.blocks_add_xx_0, 1))
+        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.qtgui_const_sink_x_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "GMSK_tx")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
-
 
     def get_sps(self):
         return self.sps
@@ -302,8 +307,8 @@ class GMSK_tx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
+        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
 
     def get_rrc_taps(self):
         return self.rrc_taps

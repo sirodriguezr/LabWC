@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.9'?>
+<?grc format='1' created='3.7.11'?>
 <flow_graph>
   <timestamp>Fri Mar 11 17:42:29 2016</timestamp>
   <block>
@@ -598,7 +598,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(512, 115)</value>
+      <value>(536, 100)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -645,7 +645,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(328, 139)</value>
+      <value>(280, 148)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -822,7 +822,7 @@
     </param>
     <param>
       <key>repeat</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>vlen</key>
@@ -1297,6 +1297,10 @@
       <value>False</value>
     </param>
     <param>
+      <key>axislabels</key>
+      <value>True</value>
+    </param>
+    <param>
       <key>alias</key>
       <value></value>
     </param>
@@ -1644,6 +1648,10 @@
       <value>1.0</value>
     </param>
     <param>
+      <key>axislabels</key>
+      <value>True</value>
+    </param>
+    <param>
       <key>bw</key>
       <value>samp_rate</value>
     </param>
@@ -1912,6 +1920,10 @@
       <value>firdes.WIN_BLACKMAN_hARRIS</value>
     </param>
     <param>
+      <key>label</key>
+      <value>Relative Gain</value>
+    </param>
+    <param>
       <key>ymax</key>
       <value>10</value>
     </param>
@@ -1919,11 +1931,19 @@
       <key>ymin</key>
       <value>-140</value>
     </param>
+    <param>
+      <key>units</key>
+      <value>dB</value>
+    </param>
   </block>
   <block>
     <key>qtgui_time_sink_x</key>
     <param>
       <key>autoscale</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>axislabels</key>
       <value>True</value>
     </param>
     <param>
@@ -1952,7 +1972,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(768, 99)</value>
+      <value>(744, 100)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2947,7 +2967,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3075,6 +3095,10 @@
     </param>
     <param>
       <key>hide_cmd_port</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>hide_lo_controls</key>
       <value>True</value>
     </param>
     <param>

@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Encodeco
-# Generated: Thu Aug 25 15:52:17 2016
+# Generated: Wed Jan 25 17:27:15 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -28,6 +28,7 @@ from grc_gnuradio import blks2 as grc_blks2
 from optparse import OptionParser
 import sip
 import sys
+from gnuradio import qtgui
 
 
 class EncoDeco(gr.top_block, Qt.QWidget):
@@ -36,6 +37,7 @@ class EncoDeco(gr.top_block, Qt.QWidget):
         gr.top_block.__init__(self, "Encodeco")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Encodeco")
+        qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
         except:
@@ -62,7 +64,7 @@ class EncoDeco(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate = 100e3
         self.preamble = preamble = '00000000000000000000000000000000'
         self.code2 = code2 = '1111000011110000111100001111000011110000111100001111000011110000'
-        self.code1 = code1 = '1111111111111111111111111111111111111111111111111111111111111111'
+        self.code1 = code1 = '111111111111111111111111111111111111111111111111111111111111111'
 
         ##################################################
         # Blocks
@@ -74,21 +76,22 @@ class EncoDeco(gr.top_block, Qt.QWidget):
         	1 #number of inputs
         )
         self.qtgui_time_sink_x_0.set_update_time(0.10)
-        self.qtgui_time_sink_x_0.set_y_axis(-128, 128)
-        
-        self.qtgui_time_sink_x_0.set_y_label("Amplitude", "")
-        
+        self.qtgui_time_sink_x_0.set_y_axis(-2, 2)
+
+        self.qtgui_time_sink_x_0.set_y_label('Amplitude', "")
+
         self.qtgui_time_sink_x_0.enable_tags(-1, True)
         self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
         self.qtgui_time_sink_x_0.enable_autoscale(False)
         self.qtgui_time_sink_x_0.enable_grid(False)
+        self.qtgui_time_sink_x_0.enable_axis_labels(True)
         self.qtgui_time_sink_x_0.enable_control_panel(True)
-        
+
         if not True:
           self.qtgui_time_sink_x_0.disable_legend()
-        
-        labels = ["", "", "", "", "",
-                  "", "", "", "", ""]
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
         colors = ["blue", "red", "green", "black", "cyan",
@@ -99,7 +102,7 @@ class EncoDeco(gr.top_block, Qt.QWidget):
                    -1, -1, -1, -1, -1]
         alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
                   1.0, 1.0, 1.0, 1.0, 1.0]
-        
+
         for i in xrange(1):
             if len(labels[i]) == 0:
                 self.qtgui_time_sink_x_0.set_line_label(i, "Data {0}".format(i))
@@ -110,9 +113,50 @@ class EncoDeco(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_0.set_line_style(i, styles[i])
             self.qtgui_time_sink_x_0.set_line_marker(i, markers[i])
             self.qtgui_time_sink_x_0.set_line_alpha(i, alphas[i])
-        
+
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
+        self.qtgui_const_sink_x_0 = qtgui.const_sink_c(
+        	1024, #size
+        	"", #name
+        	1 #number of inputs
+        )
+        self.qtgui_const_sink_x_0.set_update_time(0.10)
+        self.qtgui_const_sink_x_0.set_y_axis(-2, 2)
+        self.qtgui_const_sink_x_0.set_x_axis(-2, 2)
+        self.qtgui_const_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, "")
+        self.qtgui_const_sink_x_0.enable_autoscale(False)
+        self.qtgui_const_sink_x_0.enable_grid(False)
+        self.qtgui_const_sink_x_0.enable_axis_labels(True)
+
+        if not True:
+          self.qtgui_const_sink_x_0.disable_legend()
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "red", "red", "red",
+                  "red", "red", "red", "red", "red"]
+        styles = [0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0]
+        markers = [0, 0, 0, 0, 0,
+                   0, 0, 0, 0, 0]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_const_sink_x_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_const_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_const_sink_x_0.set_line_width(i, widths[i])
+            self.qtgui_const_sink_x_0.set_line_color(i, colors[i])
+            self.qtgui_const_sink_x_0.set_line_style(i, styles[i])
+            self.qtgui_const_sink_x_0.set_line_marker(i, markers[i])
+            self.qtgui_const_sink_x_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_const_sink_x_0_win = sip.wrapinstance(self.qtgui_const_sink_x_0.pyqwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_const_sink_x_0_win)
         self.digital_gmsk_mod_0 = digital.gmsk_mod(
         	samples_per_symbol=sps,
         	bt=0.35,
@@ -129,27 +173,30 @@ class EncoDeco(gr.top_block, Qt.QWidget):
         	log=False,
         )
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_char*1, samp_rate,True)
-        self.blocks_packed_to_unpacked_xx_0 = blocks.packed_to_unpacked_bb(8, gr.GR_MSB_FIRST)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, "/home/unal/Desktop/USRP--UNAL/LabWC/GMSK/plaindata.dat", False)
-        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_char*1, "/home/unal/Desktop/USRP--UNAL/LabWC/GMSK/decoresult", False)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/unal/Documents/Santiago/LabWC/GMSK/plaindata.dat', True)
+        self.blocks_file_sink_1_0 = blocks.file_sink(gr.sizeof_char*1, '/home/unal/Documents/Santiago/LabWC/GMSK/unpack2pack', False)
+        self.blocks_file_sink_1_0.set_unbuffered(False)
+        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_char*1, '/home/unal/Documents/Santiago/LabWC/GMSK/decoresult', False)
         self.blocks_file_sink_1.set_unbuffered(False)
-        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_char*1, "/home/unal/Desktop/USRP--UNAL/LabWC/GMSK/vecdata", False)
+        self.blocks_file_sink_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/unal/Documents/Santiago/LabWC/GMSK/pack_ncode', False)
+        self.blocks_file_sink_0_0_0.set_unbuffered(False)
+        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/unal/Documents/Santiago/LabWC/GMSK/vecdata', False)
         self.blocks_file_sink_0_0.set_unbuffered(False)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, "/home/unal/Desktop/USRP--UNAL/LabWC/GMSK/crc32test", False)
-        self.blocks_file_sink_0.set_unbuffered(False)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/unal/Documents/Santiago/LabWC/GMSK/crc32test', False)
+        self.blocks_file_sink_0.set_unbuffered(True)
         self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)
         self.blks2_packet_encoder_0 = grc_blks2.packet_mod_b(grc_blks2.packet_encoder(
         		samples_per_symbol=sps,
-        		bits_per_symbol=2,
-        		preamble=preamble,
-        		access_code=code1,
+        		bits_per_symbol=1,
+        		preamble='',
+        		access_code='',
         		pad_for_usrp=False,
         	),
-        	payload_length=1,
+        	payload_length=19,
         )
         self.blks2_packet_decoder_0 = grc_blks2.packet_demod_b(grc_blks2.packet_decoder(
-        		access_code=code1,
-        		threshold=0,
+        		access_code='',
+        		threshold=-1,
         		callback=lambda ok, payload: self.blks2_packet_decoder_0.recv_pkt(ok, payload),
         	),
         )
@@ -157,23 +204,24 @@ class EncoDeco(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blks2_packet_decoder_0, 0), (self.blocks_file_sink_1, 0))    
-        self.connect((self.blks2_packet_encoder_0, 0), (self.digital_gmsk_mod_0, 0))    
-        self.connect((self.blocks_char_to_float_0, 0), (self.qtgui_time_sink_x_0, 0))    
-        self.connect((self.blocks_file_source_0, 0), (self.blocks_throttle_0, 0))    
-        self.connect((self.blocks_packed_to_unpacked_xx_0, 0), (self.blks2_packet_decoder_0, 0))    
-        self.connect((self.blocks_throttle_0, 0), (self.blks2_packet_encoder_0, 0))    
-        self.connect((self.blocks_throttle_0, 0), (self.blocks_file_sink_0_0, 0))    
-        self.connect((self.digital_gmsk_demod_0, 0), (self.blocks_char_to_float_0, 0))    
-        self.connect((self.digital_gmsk_demod_0, 0), (self.blocks_file_sink_0, 0))    
-        self.connect((self.digital_gmsk_demod_0, 0), (self.blocks_packed_to_unpacked_xx_0, 0))    
-        self.connect((self.digital_gmsk_mod_0, 0), (self.digital_gmsk_demod_0, 0))    
+        self.connect((self.blks2_packet_decoder_0, 0), (self.blocks_file_sink_1, 0))
+        self.connect((self.blks2_packet_encoder_0, 0), (self.blocks_file_sink_0_0_0, 0))
+        self.connect((self.blks2_packet_encoder_0, 0), (self.digital_gmsk_mod_0, 0))
+        self.connect((self.blocks_char_to_float_0, 0), (self.qtgui_time_sink_x_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.blocks_throttle_0, 0))
+        self.connect((self.blocks_throttle_0, 0), (self.blks2_packet_encoder_0, 0))
+        self.connect((self.blocks_throttle_0, 0), (self.blocks_file_sink_0_0, 0))
+        self.connect((self.digital_gmsk_demod_0, 0), (self.blks2_packet_decoder_0, 0))
+        self.connect((self.digital_gmsk_demod_0, 0), (self.blocks_char_to_float_0, 0))
+        self.connect((self.digital_gmsk_demod_0, 0), (self.blocks_file_sink_0, 0))
+        self.connect((self.digital_gmsk_demod_0, 0), (self.blocks_file_sink_1_0, 0))
+        self.connect((self.digital_gmsk_mod_0, 0), (self.digital_gmsk_demod_0, 0))
+        self.connect((self.digital_gmsk_mod_0, 0), (self.qtgui_const_sink_x_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "EncoDeco")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
-
 
     def get_sps(self):
         return self.sps
@@ -186,8 +234,8 @@ class EncoDeco(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.blocks_throttle_0.set_sample_rate(self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
+        self.blocks_throttle_0.set_sample_rate(self.samp_rate)
 
     def get_preamble(self):
         return self.preamble

@@ -116,7 +116,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>88.9e6</value>
+      <value>103.9e6</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -179,7 +179,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>88.9e6</value>
+      <value>103.9e6</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -4407,7 +4407,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4546,12 +4546,6 @@
   </connection>
   <connection>
     <source_block_id>blocks_multiply_const_vxx_0_0</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_null_source_0</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
