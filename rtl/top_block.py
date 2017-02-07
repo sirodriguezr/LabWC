@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Thu Jan 26 19:47:16 2017
+# Generated: Tue Feb  7 09:09:25 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -78,24 +78,21 @@ class top_block(gr.top_block, Qt.QWidget):
         self._vol_range = Range(0, 100, 0.1, 1, 200)
         self._vol_win = RangeWidget(self._vol_range, self.set_vol, "vol", "counter_slider", float)
         self.top_layout.addWidget(self._vol_win)
-        self._fm_freq_range = Range(88.3e6, 107.9e6, 0.1e6, 103.9e6, 200)
-        self._fm_freq_win = RangeWidget(self._fm_freq_range, self.set_fm_freq, "fm_freq", "counter_slider", float)
-        self.top_layout.addWidget(self._fm_freq_win)
         self._vol_0_range = Range(0, 100, 0.1, 1, 200)
         self._vol_0_win = RangeWidget(self._vol_0_range, self.set_vol_0, "vol_0", "counter_slider", float)
         self.top_layout.addWidget(self._vol_0_win)
-        self.rtlsdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + 'rtl=0' )
-        self.rtlsdr_source_0.set_sample_rate(samp_rate)
-        self.rtlsdr_source_0.set_center_freq(fm_freq, 0)
-        self.rtlsdr_source_0.set_freq_corr(0, 0)
-        self.rtlsdr_source_0.set_dc_offset_mode(0, 0)
-        self.rtlsdr_source_0.set_iq_balance_mode(0, 0)
-        self.rtlsdr_source_0.set_gain_mode(False, 0)
-        self.rtlsdr_source_0.set_gain(10, 0)
-        self.rtlsdr_source_0.set_if_gain(20, 0)
-        self.rtlsdr_source_0.set_bb_gain(20, 0)
-        self.rtlsdr_source_0.set_antenna('', 0)
-        self.rtlsdr_source_0.set_bandwidth(0, 0)
+        self.rtlsdr_source_1 = osmosdr.source( args="numchan=" + str(1) + " " + '' )
+        self.rtlsdr_source_1.set_sample_rate(samp_rate)
+        self.rtlsdr_source_1.set_center_freq(88.9e6, 0)
+        self.rtlsdr_source_1.set_freq_corr(0, 0)
+        self.rtlsdr_source_1.set_dc_offset_mode(0, 0)
+        self.rtlsdr_source_1.set_iq_balance_mode(0, 0)
+        self.rtlsdr_source_1.set_gain_mode(False, 0)
+        self.rtlsdr_source_1.set_gain(10, 0)
+        self.rtlsdr_source_1.set_if_gain(20, 0)
+        self.rtlsdr_source_1.set_bb_gain(20, 0)
+        self.rtlsdr_source_1.set_antenna('', 0)
+        self.rtlsdr_source_1.set_bandwidth(0, 0)
 
         self.rational_resampler_xxx_0_0 = filter.rational_resampler_fff(
                 interpolation=int(a_rate/1e3*1.04),
@@ -151,6 +148,9 @@ class top_block(gr.top_block, Qt.QWidget):
         self._fm_freq_0_range = Range(88.3e6, 107.9e6, 0.1e6, 103.9e6, 200)
         self._fm_freq_0_win = RangeWidget(self._fm_freq_0_range, self.set_fm_freq_0, "fm_freq_0", "counter_slider", float)
         self.top_layout.addWidget(self._fm_freq_0_win)
+        self._fm_freq_range = Range(88.3e6, 107.9e6, 0.1e6, 103.9e6, 200)
+        self._fm_freq_win = RangeWidget(self._fm_freq_range, self.set_fm_freq, "fm_freq", "counter_slider", float)
+        self.top_layout.addWidget(self._fm_freq_win)
         self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_vff((vol, ))
         self.audio_sink_0 = audio.sink(44100, '', True)
         self.analog_nbfm_rx_0_0_0 = analog.nbfm_rx(
@@ -167,8 +167,8 @@ class top_block(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.audio_sink_0, 0))
         self.connect((self.low_pass_filter_0_0, 0), (self.analog_nbfm_rx_0_0_0, 0))
         self.connect((self.rational_resampler_xxx_0_0, 0), (self.blocks_multiply_const_vxx_0_0, 0))
-        self.connect((self.rtlsdr_source_0, 0), (self.low_pass_filter_0_0, 0))
-        self.connect((self.rtlsdr_source_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
+        self.connect((self.rtlsdr_source_1, 0), (self.low_pass_filter_0_0, 0))
+        self.connect((self.rtlsdr_source_1, 0), (self.qtgui_freq_sink_x_0_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "top_block")
@@ -193,7 +193,7 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
+        self.rtlsdr_source_1.set_sample_rate(self.samp_rate)
         self.qtgui_freq_sink_x_0_0.set_frequency_range(0, self.samp_rate)
         self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, 200e3, 1e3, firdes.WIN_HAMMING, 6.76))
 
